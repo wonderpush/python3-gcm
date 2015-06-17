@@ -122,6 +122,8 @@ class GCM(object):
             'Authorization': 'key=%s' % self.api_key,
         }
 
+        self.session = requests.Session()
+
 
     def construct_payload(self, registration_ids, data=None, collapse_key=None,
         delay_while_idle=False, time_to_live=None, is_json=True, dry_run=False):
@@ -184,7 +186,7 @@ class GCM(object):
         if not is_json:
             data = urlencode_utf8(data)
 
-        response = requests.post(
+        response = self.session.post(
             self.url, data=data, headers=self.headers,
             proxies=self.proxy
         )
