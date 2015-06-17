@@ -228,7 +228,7 @@ class GCMTest(unittest.TestCase):
     def test_make_request_unicode(self, mock_request):
         """ Test make_request with unicode payload. """
         data = {
-            'message': u'\x80abc'
+            'message': '\x80abc'
         }
         try:
             self.gcm.make_request(data, is_json=False)
