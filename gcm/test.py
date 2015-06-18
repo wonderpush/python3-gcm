@@ -178,7 +178,7 @@ class GCMTest(unittest.TestCase):
         res = self.gcm.handle_plaintext_response(response)
         self.assertEqual(res, '3456')
 
-    @patch('requests.post')
+    @patch('requests.Session.request')
     def test_make_request_header(self, mock_request):
         """ Test plaintext make_request. """
 
@@ -194,7 +194,7 @@ class GCMTest(unittest.TestCase):
         self.assertTrue(mock_request.return_value.json.called)
 
 
-    @patch('requests.post')
+    @patch('requests.Session.request')
     def test_make_request_plaintext(self, mock_request):
         """ Test plaintext make_request. """
 
@@ -224,7 +224,7 @@ class GCMTest(unittest.TestCase):
                 {'message': 'test'}, is_json=False
             )
 
-    @patch('requests.api.request')
+    @patch('requests.Session.request')
     def test_make_request_unicode(self, mock_request):
         """ Test make_request with unicode payload. """
         data = {
